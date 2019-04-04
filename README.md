@@ -16,8 +16,11 @@ It works with:
 Role Variables
 --------------
 
-The Play takes the users information inclusing name, group,uid,groups as variables declared in main.yml. For removing  users also same file can be used.
-
+The Play takes the users information including name, group,uid,groups as variables declared in main.yml. For removing  users also same file can be used.
+Add the public keys for the user in folder files with name  
+```console
+{username.pub}
+```
 Dependencies
 ------------
 
