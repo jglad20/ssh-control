@@ -1,2 +1,11 @@
 ---
 # tasks file for ssh-control
+- name: Add a user
+  import_tasks: grant.yml
+  when: operation == "add"
+ 
+- name: Remove a user
+  import_tasks: revoke.yml
+  when: operation == "remove"
+  
+ 
