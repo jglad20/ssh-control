@@ -9,9 +9,9 @@ Requirements
 This playbook needs no special requirements configured other than ssh access to the servers themselves. 
 It works with:
 
--Ubuntu - All versions
--Debian - All versions
--Redhat - All versions
+    *  Ubuntu - all
+    * Debian - all
+    * Redhat - all
 
 Role Variables
 --------------
@@ -27,18 +27,21 @@ Example Playbook
 ----------------
 
 Define the users to be manged in the following format.
-
+```yaml
     users:
   - name: jgladwin
     uid: 02301
     is_admin: true
     group: dev
-    
+```    
 To add a user run the command:
+```console
   ansible-playbook -i servers -e "operation=add" ssh-manage.yml
+  ```
 To remove a user run the command:
+```console
  ansible-playbook -i servers -e "operation=remove" ssh-manage.yml
-
+ ```
 License
 -------
 
