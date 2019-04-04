@@ -1,0 +1,25 @@
+- name: Create users with home directory
+  user: 
+        name={{ item.username }}
+        shell=/bin/bash 
+        createhome=yes
+        uid={{ item.uid }}
+        group={{ item.group }}
+        comment='Created by Ansible'
+  with_items: '{{users}}'
+
+- name: Add to authorized keys
+  authorized_key: 
+      user={{ item.username }}
+      key="{{ lookup('file', '../files/{{ item.username }}.pub') }}"
+  when: '{{ item.isAdmin }} == true'
+  with_items: '{{users}}'
+
+- name: Sudoers | update sudoers file and validate
+  lineinfile: "dest=/etc/sudoers
+      insertafter=EOF
+      line='{{ item.username }} ALL=(ALL) NOPASSWD: ALL'
+      regexp='^{{ item.username }} .*'
+      state=present"
+  when: '{{ item.isAdmin }} == true'
+  with_items: '{{users}}'

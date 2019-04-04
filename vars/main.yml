@@ -1,2 +1,17 @@
 ---
 # vars file for ssh-control
+
+---
+users:
+  - name: jgladwin
+    uid: 02301
+    is_admin: true
+    group: web
+   
+  - name: jgodwin
+    uid: 3142
+    is_admin: true
+    group: dev
+   
+ 
+

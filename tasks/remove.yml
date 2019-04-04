@@ -1,0 +1,13 @@
+- name: Deleting The users
+  user: 
+   name={{ item.username }} 
+   state=absent 
+   remove=yes
+  with_items: '{{users}}'
+
+- name: Remove authorized key taken from file
+  authorized_key:
+    user: "{{ item.username }}" 
+    state: absent
+    key: "{{ lookup('file', '../files/{{ item.username }}.pub') }}"
+    with_items: '{{users}}'

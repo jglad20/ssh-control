@@ -1,0 +1,15 @@
+# for all tasks in all plays to 
+#run using privilege mode,  is best achieved by using group_vars
+---
+- name: Grant or Revoke SSH access for users 
+  hosts: servers
+  gather_facts: no
+  remote_user: ubuntu #change to required user
+  become: yes
+  become_user: root 
+
+  vars_files:
+  - vars/main.yaml
+
+  roles:
+    - ssh-control
